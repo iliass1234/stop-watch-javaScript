@@ -1,21 +1,14 @@
-let text = document.getElementById('interpreter')
+let text = document.getElementById('stop-watch')
 
 
-class Interpreter{
-    read(inputField){
-        let code = inputField.value 
 
-        if(/ktab\(/.test(code)){
-            let txt = code.match(/(?=ktab\()\w+(?<= \=)/)
-            return txt[0]
-         }
-    }
-}
-let interp = new Interpreter()
-document.addEventListener('keydown', function(event) {
+
+function action(event) {
     if(event.keyCode == 13) {
-        text.value ='hello'
-    }
-});
+        text.placeholder ='hello'
+        text.value = text.placeholder
+    }}
 
-interp.read(text.value)
+document.addEventListener('keydown', action);
+
+
