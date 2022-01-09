@@ -1,14 +1,24 @@
 let hoursIndicator = document.getElementById('hours-indicator-holder')
 let secIndicator = document.getElementById('sec-indicator-holder')
 let minIndicator = document.getElementById('min-indicator-holder')
-hoursIndicator.style.transform = 'rotate(1deg)'
 
 let secTick = 0
 let hoursTick = 0
 let minTick = 0
 let time = 1000
-let clockSpeed = 1
-function clockAction(){    
+let clockSpeed = time * 10
+
+function setInitTime(seccond , minute , hour){
+    secTick = seccond * (360/60)
+    minTick = minute * (360/60)
+    hoursTick = hour * (360/12)
+    hoursIndicator.style.transform = `rotate(${hoursTick}deg)`
+    minIndicator.style.transform = `rotate(${minTick}deg)`
+    secIndicator.style.transform = `rotate(${secTick}deg)`
+}
+
+function clockAction(){  
+
     hoursTick += 0.0083333
     secTick += 6
     minTick += 0.1
@@ -29,10 +39,12 @@ function clockAction(){
 console.log(Date.prototype)
 
 
+
+setInitTime(15,45,13)
 setInterval(() => {
     clockAction()
     
-}, clockSpeed * time);
+}, 1000);
 
 
 
