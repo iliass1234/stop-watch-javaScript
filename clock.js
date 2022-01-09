@@ -27,6 +27,18 @@ let clockSpeed = time * 10
             clockWall.style.backgroundColor = 'black'
         }, 2000);
      }
+     if(seccond<0 || minute<0 || hour<0){
+        seccond = 0
+        minute = 0
+        hour = 0
+         setBtn.innerText = 'invalid time'
+         clockWall.style.backgroundColor = 'red'
+
+        setTimeout(() => {
+            setBtn.innerText = 'set time'
+            clockWall.style.backgroundColor = 'black'
+        }, 2000);
+     }
     secTick = seccond * (360/60)
     minTick = minute * (360/60)
     hoursTick = hour * (360/12)
@@ -54,6 +66,29 @@ let clockSpeed = time * 10
     minIndicator.style.transform = `rotate(${minTick}deg)`
     secIndicator.style.transform = `rotate(${secTick}deg)`
 }
+
+
+
+hoursInput.onblur = function(){
+    let h = hoursInput.value 
+    hoursTick = h * (360/12)
+    hoursIndicator.style.transform = `rotate(${hoursTick}deg)`
+
+}
+minInput.onblur = function(){
+    let h = minInput.value 
+    minTick = h * (360/12)
+    minIndicator.style.transform = `rotate(${minTick}deg)`
+
+}
+secInput.onblur = function(){
+    let h = secInput.value 
+    secTick = h * (360/12)
+    secIndicator.style.transform = `rotate(${secTick}deg)`
+
+}
+
+
 setBtn.onclick = function (){
 
     let sec = parseInt(secInput.value)
@@ -72,20 +107,5 @@ setBtn.onclick = function (){
 }, 10);
 
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
