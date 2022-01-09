@@ -11,6 +11,7 @@
 <style>
 
 #stop-watch{
+    transition: 1s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,23 +24,13 @@
 }
 #hours-indicator-holder{
     transition: 0.1s;
-    transform: rotate(90deg);
+    transform: rotate(0deg);
     display: flex;
     align-items: center;
     height: 300px;
     width: 300px;
     border-radius: 50%;
     position: absolute;
-}
-#sec-indicator-holder{
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    height: 300px;
-    width: 300px;
-    border-radius: 50%;
-    position: absolute;
-    transform: rotate(50deg);
 }
 #min-indicator-holder{
     
@@ -50,7 +41,28 @@
     width: 300px;
     border-radius: 50%;
     position: absolute;
-    transform: rotate(30deg);
+    transform: rotate(0deg);
+}
+#sec-indicator-holder{
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    position: absolute;
+    transform: rotate(0deg);
+}
+#allTickers{
+    
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    position: absolute;
+    transform: rotate(90deg);
 }
 #sec-indicator{
     background-color: rgb(255, 65, 65);
@@ -78,11 +90,41 @@
     width: 100px;
     border-radius: 10px;
 }
+#input-container{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3,20%);
+    gap: 10px;
+    justify-content: center;
+}
+.inputa{
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    background-color: black;
+    border: none;
+    height: 30px;
+    width: 100%;
 
-
+}
+#input-button{
+    color: white;
+    height: 30px;
+    font-size: 17px;
+    grid-column: 1/4;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+}
+#input-button:hover{
+    cursor: pointer;
+    background-color: yellowgreen;
+}
 </style>
 
 <div id="stop-watch">
+    <div id="allTickers">
     <div id="hours-indicator-holder">
         <div id="hours-indicator"></div>
     </div>
@@ -92,11 +134,17 @@
     <div id="sec-indicator-holder">
         <div id="sec-indicator"></div>
     </div>
-    <div id="center-circle"></div>
-
 </div>
+<div id="center-circle"></div>
+</div>
+<div id="input-container">
+    <input placeholder="hours :" type="text" id="hours-input" class="inputa">
+    <input placeholder="min :" type="text" id="min-input" class="inputa">
+    <input placeholder="sec :" type="text" id="sec-input" class="inputa">
 
-<script src="clock.js"></script>   
+    <button id="input-button">set time</button>
+</div>
+<script src="clock.js"></script>
 </body>
 </html>
 
