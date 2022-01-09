@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stop-watch</title>
+
+</head>
+<body>
+<style>
+
+#stop-watch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: black;
+    height: 400px;
+    width: 400px;
+    border: none;
+    
+}
+#hours-indicator-holder{
+    transition: 0.1s;
+    transform: rotate(90deg);
+    display: flex;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    position: absolute;
+}
+#sec-indicator-holder{
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    position: absolute;
+    transform: rotate(50deg);
+}
+#min-indicator-holder{
+    
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    position: absolute;
+    transform: rotate(30deg);
+}
+#sec-indicator{
+    background-color: rgb(255, 65, 65);
+    height: 5px;
+    width: 150px;
+    border-radius: 10px;
+}
+#min-indicator{
+    background-color: rgb(255, 255, 255);
+    height: 8px;
+    width: 150px;
+    border-radius: 10px;
+}
+#center-circle{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+#hours-indicator{
+    transform: translate(50px);
+    background-color: rgb(255, 255, 255);
+    height: 8px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+
+</style>
+
+<div id="stop-watch">
+    <div id="hours-indicator-holder">
+        <div id="hours-indicator"></div>
+    </div>
+    <div id="min-indicator-holder">    
+        <div id="min-indicator"></div>
+    </div>
+    <div id="sec-indicator-holder">
+        <div id="sec-indicator"></div>
+    </div>
+    <div id="center-circle"></div>
+
+</div>
+
+<script src="clock.js"></script>   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
