@@ -1,6 +1,12 @@
+
 let hoursIndicator = document.getElementById('hours-indicator-holder')
+let clockWall = document.getElementById('stop-watch')
 let secIndicator = document.getElementById('sec-indicator-holder')
 let minIndicator = document.getElementById('min-indicator-holder')
+let hoursInput = document.getElementById('hours-input')
+let minInput = document.getElementById('min-input')
+let secInput = document.getElementById('sec-input')
+let setBtn = document.getElementById('input-button')
 
 let secTick = 0
 let hoursTick = 0
@@ -8,7 +14,19 @@ let minTick = 0
 let time = 1000
 let clockSpeed = time * 10
 
-function setInitTime(seccond , minute , hour){
+ function setInitTime(seccond , minute , hour){
+     if(seccond>60 || minute>60 || hour>12){
+        seccond = 0
+        minute = 0
+        hour = 0
+         setBtn.innerText = 'invalid time'
+         clockWall.style.backgroundColor = 'red'
+
+        setTimeout(() => {
+            setBtn.innerText = 'set time'
+            clockWall.style.backgroundColor = 'black'
+        }, 2000);
+     }
     secTick = seccond * (360/60)
     minTick = minute * (360/60)
     hoursTick = hour * (360/12)
@@ -17,7 +35,7 @@ function setInitTime(seccond , minute , hour){
     secIndicator.style.transform = `rotate(${secTick}deg)`
 }
 
-function clockAction(){  
+ function clockAction(){  
 
     hoursTick += 0.0083333
     secTick += 6
@@ -36,17 +54,24 @@ function clockAction(){
     minIndicator.style.transform = `rotate(${minTick}deg)`
     secIndicator.style.transform = `rotate(${secTick}deg)`
 }
-console.log(Date.prototype)
+setBtn.onclick = function (){
+
+    let sec = parseInt(secInput.value)
+    let min = parseInt(minInput.value)
+    let hours = parseInt(hoursInput.value)
+
+
+    setInitTime(sec,min,hours)
+}
 
 
 
-setInitTime(15,45,13)
-setInterval(() => {
+/* setInterval(() => {
     clockAction()
     
-}, 1000);
+}, 10);
 
-
+ */
 
 
 
