@@ -11,7 +11,8 @@
 <style>
 
 #stop-watch{
-    transition: 1s;
+    transform: scale(0.8);
+    transition: 0.5s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,8 +78,8 @@
 }
 #center-circle{
     position: absolute;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     background-color: rgb(255, 255, 255);
     border-radius: 50%;
 }
@@ -118,7 +119,7 @@
 }
 #input-button:hover{
     cursor: pointer;
-    background-color: yellowgreen;
+    background-color: rgb(112, 141, 55);
 }
 #charta-left{
     position:absolute;
@@ -156,58 +157,61 @@
 }
 #am-pm{
     padding-top: 5px;
+    font-weight: 600;
     font-family: sans-serif;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 20px;
     text-align: center;
     background-color: rgba(0, 0, 0,0);
     height: 30px;
     width: 50px;
     position: absolute;
-    bottom:32%;
+    bottom:45%;
     border-radius: 10%;
+}
+.time-name{
+    font-weight: 200;
+    font-size: 16px;
+    margin: 0px;
+    text-align: center;
+    font-family: sans-serif;
+    top: 10px;
+    color: rgb(255, 255, 255);
 }
 </style>
 
 <div id="stop-watch">
-    <div id="am-pm">PM</div>
     <div id="allTickers">
-    <div id="hours-indicator-holder">
-        <div id="hours-indicator"></div>
+        <div id="hours-indicator-holder">
+            <div id="hours-indicator"></div>
+        </div>
+        <div id="min-indicator-holder">    
+            <div id="min-indicator"></div>
+        </div>
+        <div id="sec-indicator-holder">
+            <div id="sec-indicator"></div>
+        </div>
+        <div id="charta-top"></div>
+        <div id="charta-left"></div>
+        <!--     <div id="charta-buttom"></div> -->
+        <div id="charta-right"></div>
     </div>
-    <div id="min-indicator-holder">    
-        <div id="min-indicator"></div>
-    </div>
-    <div id="sec-indicator-holder">
-        <div id="sec-indicator"></div>
-    </div>
-    <div id="charta-top"></div>
-    <div id="charta-left"></div>
-<!--     <div id="charta-buttom"></div> -->
-    <div id="charta-right"></div>
-</div>
-<div id="center-circle"></div>
+    <div id="center-circle"></div>
+    <div id="am-pm">PM</div>
 </div>
 <div id="input-container">
-    <input placeholder="hours :" type="text" id="hours-input" class="inputa">
-    <input placeholder="min :" type="text" id="min-input" class="inputa">
-    <input placeholder="sec :" type="text" id="sec-input" class="inputa">
+    <h6 class="time-name">Hour:</h6>
+    <h6 class="time-name">Min:</h6>
+    <h6 class="time-name">Sec:</h6>
+    <input type="text" id="hours-input" class="inputa">
+    <input type="text" id="min-input" class="inputa">
+    <input type="text" id="sec-input" class="inputa">
 
     <button id="input-button">set time</button>
 </div>
 <script src="clock.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 
