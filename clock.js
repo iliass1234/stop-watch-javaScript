@@ -1,4 +1,3 @@
-
 let hoursIndicator = document.getElementById('hours-indicator-holder')
 let clockWall = document.getElementById('stop-watch')
 let secIndicator = document.getElementById('sec-indicator-holder')
@@ -17,105 +16,103 @@ let minTick = 0
 let time = 1000
 let clockSpeed = time * 10
 
- function setInitTime(seccond , minute , hour){
-     if(seccond>60 || minute>60 || hour>12){
-        seccond = 0
-        minute = 0
-        hour = 0
-         setBtn.innerText = 'invalid time'
-         clockWall.style.backgroundColor = 'red'
-
-        setTimeout(() => {
-            setBtn.innerText = 'set time'
-            clockWall.style.backgroundColor = 'black'
-        }, 2000);
-     }
-     if(seccond<0 || minute<0 || hour<0){
-        seccond = 0
-        minute = 0
-        hour = 0
-         setBtn.innerText = 'invalid time'
-         clockWall.style.backgroundColor = 'red'
-
-        setTimeout(() => {
-            setBtn.innerText = 'set time'
-            clockWall.style.backgroundColor = 'black'
-        }, 2000);
-     }
-
-    secTick = seccond * (360/60)
-    minTick = minute * (360/60)
-    hoursTick = hour * (360/12)
-    hoursIndicator.style.transform = `rotate(${hoursTick}deg)`
-    minIndicator.style.transform = `rotate(${minTick}deg)`
-    secIndicator.style.transform = `rotate(${secTick}deg)`
+let date = new Date()
+function amOrPm(){
+    if (date.getHours()>12) {
+        document.getElementById('am-pm').innerText = 'PM'
+    }
+    if (date.getHours()<12) {
+        document.getElementById('am-pm').innerText = 'AM'
+    }
 }
 
- function clockAction(){  
 
-    hoursTick += 0.0083333
+clockWall.addEventListener('mouseover', ()=>{
+    clockWall.style.backgroundColor= 'yellowGreen'
+})
+clockWall.addEventListener('mouseout', ()=>{
+    clockWall.style.backgroundColor= 'black'
+})
+function setTime(hours,minutes,secconds){
+    let ampm = document.getElementById('am-pm')
+    for(let arg in arguments){
+        if (!arg/3) {
+            arg = 0
+        }
+    }
+    if (hours>12) {
+        hours = hours%12 
+    }
+    if (hours ==12 && ampm.innerText == 'AM') {
+        hours = 0
+    }
+    let s = 360/60
+    let m = s
+    let h = 360/12
+    hoursTick = hours*h-360/24
+    minTick = minutes*m
+    secTick = secconds*s
+    hoursIndicator.style.transform = `rotate(${hours*h}deg)`
+    minIndicator.style.transform = `rotate(${minutes*m}deg)`
+    secIndicator.style.transform = `rotate(${secconds*s}deg)` 
+}
+function action(){
     secTick += 6
     minTick += 0.1
-
-    if(hoursTick===-360){
-        hoursTick = 0
-    }
-    if(minTick===-360){
-        minTick = 0
-    }
-    if(secTick===-360){
+    hoursTick += 0.00833333
+    if (secTick >=360) {
         secTick = 0
     }
+    if (minTick >360) {
+        minTick = 0
+    }
+    if (hoursTick >360) {
+        hoursTick = 0
+    }
+
+
+
+}
+/* function currentTime(ch,cm,cs){
+    secTick = (360/60)*cs
+    minTick = (360/60)*cm
+    hoursTick = (360/60)*ch
+    hoursIndicator.style.transform = `rotate(${hoursTick}deg)`
+    minIndicator.style.transform = `rotate(${minTick}deg)`
+    secIndicator.style.transform = `rotate(${secTick}deg)` 
+
+} */
+setTime(date.getHours(),date.getMinutes(),date.getSeconds())
+//currentTime(date.getHours(),date.getMinutes(),date.getSeconds())
+setBtn.onclick= ()=>{setTime(hoursInput.value,minInput.value,secInput.value)
+console.log(true)
+}
+amOrPm()
+
+setInterval(() => {
+    amOrPm()
+    action()
     hoursIndicator.style.transform = `rotate(${hoursTick}deg)`
     minIndicator.style.transform = `rotate(${minTick}deg)`
     secIndicator.style.transform = `rotate(${secTick}deg)`
-}
+    console.log(Math.floor(hoursTick/24) , Math.floor(minTick/6) , secTick/6)
+    console.log(date.getHours())
 
 
-hoursInput.onfocus = function(){
-    hoursTicker.style.backgroundColor = 'yellowgreen'
-}
-minInput.onfocus = function(){
-    minTicker.style.backgroundColor = 'yellowgreen'
-}
-secInput.onfocus = function(){
-    secTicker.style.backgroundColor = 'yellowgreen'
-}
-
-hoursInput.onblur = function(){
-    let h = hoursInput.value 
-    hoursTick = h * (360/12)
-    hoursTicker.style.backgroundColor = 'white'
-    hoursIndicator.style.transform = `rotate(${hoursTick}deg)`
-
-}
-minInput.onblur = function(){
-    let h = minInput.value 
-    minTick = h * (360/12)
-    minTicker.style.backgroundColor = 'white'
-    minIndicator.style.transform = `rotate(${minTick}deg)`
-
-}
-secInput.onblur = function(){
-    let h = secInput.value 
-    secTick = h * (360/12)
-    secTicker.style.backgroundColor = 'red'
-    secIndicator.style.transform = `rotate(${secTick}deg)`
-
-}
 
 
-setBtn.onclick = function (){
+}, 1000);
+
+/* setBtn.onclick = function (){
 
     let sec = parseInt(secInput.value)
     let min = parseInt(minInput.value)
     let hours = parseInt(hoursInput.value)
-    let h,m,s ;
-
 
     setInitTime(sec,min,hours)
 
      setInterval(() => {
+         clockAction()
          if (secInput.value == 59) {
              secInput.value = 0
              minInput.value = parseInt(minInput.value)+1
@@ -128,9 +125,14 @@ setBtn.onclick = function (){
             hoursInput.value = 0
          }
         secInput.value = parseInt(secInput.value) + 1
-        clockAction()
         
-    }, 1);
+    }, 1000);
 
-}    
+}    */ 
+
+
+
+
+
+
 
