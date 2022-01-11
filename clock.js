@@ -28,7 +28,7 @@ function amOrPm(){
 
 
 clockWall.addEventListener('mouseover', ()=>{
-    clockWall.style.backgroundColor= 'yellowGreen'
+    clockWall.style.backgroundColor= 'rgb(112, 141, 55)'
 })
 clockWall.addEventListener('mouseout', ()=>{
     clockWall.style.backgroundColor= 'black'
@@ -88,20 +88,36 @@ setBtn.onclick= ()=>{setTime(hoursInput.value,minInput.value,secInput.value)
 console.log(true)
 }
 amOrPm()
-
 setInterval(() => {
     amOrPm()
     action()
+    if ((secTick/6).toString().length < 2 ) {
+        secInput.value = `0${secTick/6}`
+    }
+    if((secTick/6).toString().length>1){
+        secInput.value = secTick/6
+    }
+    if(Math.floor(minTick/6).toString().length < 2 ) {
+        minInput.value = `0${Math.floor(minTick/6)}` 
+    }
+    if(Math.floor(minTick/6).toString().length>1){
+        minInput.value = Math.floor(minTick/6) 
+    }
+    if (Math.floor(hoursTick/24).toString().length < 2 ) {
+        hoursInput.value = `0${Math.floor(hoursTick/24)}`
+    }
+    if(Math.floor(hoursTick/24).toString().length>1){
+        hoursInput.value = Math.floor(hoursTick/24)
+    }
+
+
+
     hoursIndicator.style.transform = `rotate(${hoursTick}deg)`
     minIndicator.style.transform = `rotate(${minTick}deg)`
     secIndicator.style.transform = `rotate(${secTick}deg)`
-    console.log(Math.floor(hoursTick/24) , Math.floor(minTick/6) , secTick/6)
-    console.log(date.getHours())
 
 
-
-
-}, 1000);
+}, 0.01);
 
 /* setBtn.onclick = function (){
 
