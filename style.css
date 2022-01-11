@@ -1,9 +1,15 @@
+::-webkit-scrollbar{
+    display: none;
+}
+
 body{
-    background-color: rgb(255, 211, 211);
+    margin: -10px;
     font-family: sans-serif;
 
 }
-
+img{
+    width: 100vw;
+}
 h1{
     color: rgb(255, 255, 255);
     font-size: 20px;
