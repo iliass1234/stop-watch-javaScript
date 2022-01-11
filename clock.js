@@ -117,7 +117,7 @@ setInterval(() => {
     secIndicator.style.transform = `rotate(${secTick}deg)`
 
 
-}, 0.01);
+}, 1000);
 
 /* setBtn.onclick = function (){
 
